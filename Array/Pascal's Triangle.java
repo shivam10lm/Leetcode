@@ -1,39 +1,25 @@
+class Solution {
 
-import java.util.*;
-
-public class tUf {
-    public static int nCr(int n, int r) {
+    public static int nCr(int n, int r){
         long res = 1;
-        // calculating nCr:
-        for (int i = 0; i < r; i++) {
+
+        for(int i = 0; i < r; i++){
             res = res * (n - i);
             res = res / (i + 1);
         }
         return (int) res;
     }
 
-    public static List<List<Integer>> pascalTriangle(int n) {
+    public List<List<Integer>> generate(int numRows) {
         List<List<Integer>> ans = new ArrayList<>();
 
-        // Store the entire Pascal's triangle:
-        for (int row = 1; row <= n; row++) {
-            List<Integer> tempLst = new ArrayList<>(); // temporary list
-            for (int col = 1; col <= row; col++) {
-                tempLst.add(nCr(row - 1, col - 1));
+        for(int row = 1; row <= numRows; row++){
+            List<Integer> temp = new ArrayList<>();
+            for(int col = 1; col <= row; col++){
+                temp.add(nCr(row - 1, col - 1));
             }
-            ans.add(tempLst);
+            ans.add(temp);
         }
         return ans;
-    }
-
-    public static void main(String[] args) {
-        int n = 5;
-        List<List<Integer>> ans = pascalTriangle(n);
-        for (List<Integer> it : ans) {
-            for (int ele : it) {
-                System.out.print(ele + " ");
-            }
-            System.out.println();
-        }
     }
 }
