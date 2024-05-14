@@ -1,31 +1,29 @@
-import java.util.*;
-public class Solution {
-    public static void mergeTwoSortedArraysWithoutExtraSpace(long []a, long []b){
-        // Write your code here.
-        int n = a.length;
-        int m = b.length;
+class Solution {
 
-                // Declare 2 pointers:
-        int left = n - 1;
-        int right = 0;
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        // Initialize pointers for nums1 and nums2
+        int left = m - 1; // Start from the end of the initialized part of nums1
+        int right = 0; // Start from the beginning of nums2
 
-        // Swap the elements until arr1[left] is
-        // smaller than arr2[right]:
-        while (left >= 0 && right < m) {
-            if (a[left] > b[right]) {
-                long temp = a[left];
-                a[left] = b[right];
-                b[right] = temp;
-                left--;
-                right++;
-            } else {
+        // Loop through nums1 and nums2 until we've compared all their elements
+        while(left >= 0 && right < n){
+            // If the current element in nums1 is greater than the current element in nums2
+            if(nums1[left] > nums2[right]){
+                // Swap the elements
+                int temp = nums1[left];
+                nums1[left] = nums2[right];
+                nums2[right] = temp;
+                // Move the pointers accordingly
+                left--; // Move the nums1 pointer backwards
+                right++; // Move the nums2 pointer forwards
+            }
+            else{
+                // If the current element in nums1 is not greater, no need to continue swapping
                 break;
             }
         }
-
-        // Sort arr1[] and arr2[] individually:
-        Arrays.sort(a);
-        Arrays.sort(b);
-    
+        // Sort nums1 and nums2 to ensure they are in ascending order after swaps
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
     }
 }
