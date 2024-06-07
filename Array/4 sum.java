@@ -14,7 +14,7 @@ class Solution {
                 while(k < l){
                     long sum = nums[i] + nums[j];
                     sum += nums[k];
-                    sum += nums[l];
+                    sum += nums[l]
 
                     if(sum == target){
                         ArrayList<Integer> temp = new ArrayList<>();
