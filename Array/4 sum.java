@@ -10,7 +10,7 @@ class Solution {
                 if(j > i + 1 && nums[j] == nums[j - 1]) continue;
 
                 int k = j + 1;
-                int l = n - 1;
+                int l = n - 1
                 while(k < l){
                     long sum = nums[i] + nums[j];
                     sum += nums[k];
