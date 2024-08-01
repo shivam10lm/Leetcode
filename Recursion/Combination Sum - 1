@@ -1,25 +1,28 @@
-import java.io.*;
-import java.util.*;
 class Solution {
+    
+    public void findCombinations(int[] candidates, int ind, int target, List<List<Integer>> ans, List<Integer> ds){
 
-    private void findCombinations(int ind, int[] arr, int target, List < List < Integer >> ans, List < Integer > ds) {
-        if (ind == arr.length) {
-            if (target == 0) {
-                ans.add(new ArrayList < > (ds));
-            }
-            return;
+    if(ind == candidates.length){
+        if(target==0){
+            ans.add(new ArrayList<>(ds));
         }
-
-        if (arr[ind] <= target) {
-            ds.add(arr[ind]);
-            findCombinations(ind, arr, target - arr[ind], ans, ds);
-            ds.remove(ds.size() - 1);
-        }
-        findCombinations(ind + 1, arr, target, ans, ds);
+        return;
     }
-    public List < List < Integer >> combinationSum(int[] candidates, int target) {
-        List < List < Integer >> ans = new ArrayList < > ();
-        findCombinations(0, candidates, target, ans, new ArrayList < > ());
+
+    if(candidates[ind] <= target){
+        ds.add(candidates[ind]);
+        findCombinations(candidates, ind, target - candidates[ind], ans, ds);
+        ds.remove(ds.size() - 1);
+    }
+
+    findCombinations(candidates, ind + 1, target, ans, ds);
+    
+
+    }
+    
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> ans = new ArrayList<>();
+        findCombinations(candidates, 0, target, ans, new ArrayList<>());
         return ans;
     }
 }
