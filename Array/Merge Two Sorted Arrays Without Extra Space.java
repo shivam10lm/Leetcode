@@ -1,7 +1,5 @@
 class Solution {
-
     public void merge(int[] nums1, int m, int[] nums2, int n) {
-        // Initialize pointers for nums1 and nums2
         int left = m - 1; // Start from the end of the initialized part of nums1
         int right = 0; // Start from the beginning of nums2
 
@@ -23,7 +21,14 @@ class Solution {
             }
         }
         // Sort nums1 and nums2 to ensure they are in ascending order after swaps
-        Arrays.sort(nums1);
+        Arrays.sort(nums1, 0, m);
+        
+        // Sort nums2 from start to end
         Arrays.sort(nums2);
+        
+        // Put the elements of nums2 in nums1
+        for (int i = m; i < m + n; i++) {
+            nums1[i] = nums2[i - m];
+        }
     }
 }
